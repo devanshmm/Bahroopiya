@@ -8,6 +8,7 @@ router.get('/',userAuth,  (req , res)=>{
     res.send('Hello from user route'); 
 })
 router.post('/signup', async (req, res) => {
+    console.log('signup hittt!!!')
     try {
         const { email, password, firstName , lastName } = req.body;
 
@@ -19,6 +20,7 @@ router.post('/signup', async (req, res) => {
                 lastName
             },
         });
+    
 
         const  token = jwt.sign({email: user.email}, process.env.JWT_SECRET, { expiresIn: '1h' });
         res.status(201).json({
