@@ -1,4 +1,5 @@
-const backendUrl = import.meta.env.LOGIN_API;
+const backendUrl = import.meta.env.VITE_LOGIN_API;
+console.log(backendUrl);
 import {
     Card,
     CardContent,
@@ -19,13 +20,15 @@ function Login() {
         setformdata({...formdata , [e.target.name]: e.target.value}); 
     }
     const handleSubmit = async (e) => {
+        console.log("submit clicked");
+        const payload ={
+            email : formdata.email, 
+            password: formdata.password
+        }
         e.preventDefault();
       
         try {
-          const response = await axios.post(backendUrl, {
-            email : formdata.email, 
-            password : formdata.password
-          });
+          const response = await axios.post(backendUrl, payload);
           console.log(response.data);
         } catch (error) {
           console.error(error);

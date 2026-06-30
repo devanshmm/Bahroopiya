@@ -4,9 +4,9 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const userAuth = require('../middleware/userAuth');
 
-router.get('/',userAuth,  (req , res)=>{
-    res.send('Hello from user route'); 
-})
+// router.get('/',userAuth,  (req , res)=>{
+//     res.send('Hello from user route'); 
+// })
 router.post('/signup', async (req, res) => {
     console.log('signup hittt!!!')
     try {
@@ -37,7 +37,8 @@ router.post('/signup', async (req, res) => {
     }
     
 });
-router.post('/login',userAuth,  async(req,res)=>{
+router.post('/login',  async(req,res)=>{
+    console.log('login hittt!!!')
     const{email , password} = req.body; 
     const user = await prisma.user.findUnique({
         where :{

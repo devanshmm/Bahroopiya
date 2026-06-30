@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const app = express();
 
 const userAuth = function(req, res , next){
+    console.log("userAuth middleware called");
     const token = req.headers.authrization ; 
     if(!token){
         return res.status(401).json({
